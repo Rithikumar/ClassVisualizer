@@ -13,7 +13,7 @@ import javax.swing.filechooser.FileSystemView;
 
 public class ClassParsing {
 	
-	 static String checkPhnum = "*^class.*[{]$";
+	 static String checkPhnum = "^class.*[{]$";
 	
 	public static void printFiles(File folder) throws IOException{
         //System.out.println(folder.getName());
@@ -35,7 +35,7 @@ public class ClassParsing {
 			parseClass(terminalCommands("javap",location));
 		}
 		else {
-			System.out.println("No class file");
+			//System.out.println("No class file");
 		}
 	}
 	
@@ -49,7 +49,7 @@ public class ClassParsing {
         line = reader.readLine();
         
         while((line = reader.readLine())!= null) {
-        	System.out.println(line);
+        	//System.out.println(line);
            line += "\n";
            res+=line;
         }
@@ -57,10 +57,22 @@ public class ClassParsing {
 	}
 	
 	public static void parseClass(String value) {
-		System.out.println(value);
-		if(value.matches(checkPhnum)) {
+		//System.out.println(value);
+		//value = "public class com.blog.controller.UserCommentController extends javax.servlet.http.HttpServlet{";
+		try{value = value.substring(value.indexOf("class"),value.indexOf("{"));}
+		catch(Exception e) {
 			System.out.println(value);
-		};
+		}
+		if(value.contains("extends")) {
+		String[] arr = value.split(" extends ");
+		System.out.println("" + arr[0] + "     superclass : " + arr[1]);
+		}
+		else {
+			System.out.println("" + value);
+		}
+//		if(value.matches(checkPhnum)) {
+//			System.out.println(value);
+//		};
 	}
 
 	public static void main(String[] args) throws IOException {
