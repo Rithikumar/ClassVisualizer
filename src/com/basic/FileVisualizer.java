@@ -5,8 +5,18 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
+/**
+ * <p>This class is used walk through all the files and print it in tree format</p>
+ * @author rithi-zstch1028
+ *
+ */
 public class FileVisualizer {
 	
+	/**
+	 * This method gets the number of tab spaces it must leave
+	 * @param n
+	 * @return
+	 */
 	public static String space(int n){
         String space = "";
         for(int i = 0 ; i < n ; i++){
@@ -14,7 +24,12 @@ public class FileVisualizer {
         }
         return space;
     }
-
+	
+	/**
+	 * This method checks whether the give File is folder or file, it recursively calls itself if its a folder
+	 * @param folder
+	 * @param num
+	 */
     public static void printFiles(File folder, int num){
         System.out.println(space(num)+"|__ "+folder.getName());
         if(folder.isDirectory()){
